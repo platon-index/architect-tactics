@@ -1,0 +1,40 @@
+# ☁️ OCI クラウド構築ウォーズ (OCI Cloud Architecture Wars)
+
+『崩壊：スターレイル』のマネーウォーズに着想を得た、**OCI（Oracle Cloud Infrastructure）特化型のアーキテクチャ構築オートバトラーゲーム**です。
+遊びながら **OCI 認定資格（Architect Associate / Professional）** および実務で役立つ知識が身につく設計になっています。
+
+![Game Screenshot](./docs/screenshot.png)
+
+> 📸 スクリーンショットは `docs/screenshot.png` に画像を配置すると表示されます。
+
+## ✨ 主な特徴
+
+- **OCI 主要15サービス × 前衛・後衛スロット配置** と、4つのアーキテクチャシナジー（絆）
+- **冗長化スケールアップ合成**：★1（単一 FD）→ ★2（Multi-AD）→ ★3（Cross-Region）
+- **全100問の OCI 実践4択クイズ**（未出題優先ランダム出題・解説付き）
+- **全3ステージ・計18ラウンド制**（中ボス＋最終決戦ボス「グローバルリージョン全損クライシス」）
+- **全8種類の「設計戦略（オーグメント）」** による分岐ビルド構築
+- **iPad 第9世代 / スマホ / PC 対応**（PWA 対応で全画面アプリとして動作）
+
+## 🛠 技術スタック
+
+| 区分 | 内容 |
+| --- | --- |
+| Frontend | React 19, TypeScript, Vite, Tailwind CSS, Lucide React |
+| Hosting | Cloudflare Pages |
+| Development | Claude Code & Gemini |
+
+## 🚀 ローカルでの起動方法
+
+```bash
+npm install
+npm run dev
+```
+
+ブラウザで表示された URL（通常 `http://localhost:5173`）を開いてください。
+
+本番ビルドは `npm run build`、確認は `npm run preview` で行えます。
+
+## 📄 ライセンス
+
+ライセンスは設定していません。**All rights reserved（全著作権保有）** です。
