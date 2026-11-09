@@ -3,9 +3,9 @@
 『崩壊：スターレイル』のマネーウォーズに着想を得た、**OCI（Oracle Cloud Infrastructure）特化型のアーキテクチャ構築オートバトラーゲーム**です。
 遊びながら **OCI 認定資格（Architect Associate / Professional）** および実務で役立つ知識が身につく設計になっています。
 
-![Game Screenshot](./docs/screenshot.png)
+<!-- ![Game Screenshot](./docs/screenshot.png) -->
 
-> 📸 スクリーンショットは `docs/screenshot.png` に画像を配置すると表示されます。
+<!-- > 📸 スクリーンショットは `docs/screenshot.png` に画像を配置すると表示されます。 -->
 
 ## ✨ 主な特徴
 
@@ -14,7 +14,7 @@
 - **全100問の OCI 実践4択クイズ**（未出題優先ランダム出題・解説付き）
 - **全3ステージ・計18ラウンド制**（中ボス＋最終決戦ボス「グローバルリージョン全損クライシス」）
 - **全8種類の「設計戦略（オーグメント）」** による分岐ビルド構築
-- **iPad 第9世代 / スマホ / PC 対応**（PWA 対応で全画面アプリとして動作）
+- **iPad 第9世代 / スマホ / PC 対応**（iPad / モバイル全画面Webアプリ対応：Safariのホーム画面追加による全画面アプリ動作）
 
 ## 🛠 技術スタック
 
@@ -38,3 +38,7 @@ npm run dev
 ## 📄 ライセンス
 
 ライセンスは設定していません。**All rights reserved（全著作権保有）** です。
+
+## ⚠️ 免責事項 (Disclaimer)
+
+本プロジェクトは個人の技術学習およびポートフォリオを目的として制作された非公式（ファンメイド）の作品であり、Oracle Corporation および HoYoverse (miHoYo) との提携・関係は一切ありません。
