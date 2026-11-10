@@ -3,9 +3,7 @@
 **アーキテクトタクティクス（OCI Edition）** は、アーキテクチャ設計・知識を戦術に昇華させる**デッキ構築型オートバトラー**です。『崩壊：スターレイル』のマネーウォーズに着想を得て、**OCI（Oracle Cloud Infrastructure）** のサービスを編成・配置し、冗長化やシナジーで戦い抜くゲームに仕上げました。
 遊びながら **OCI 認定資格（Architect Associate / Professional）** および実務で役立つ知識が身につく設計になっています。
 
-<!-- ![Game Screenshot](./docs/screenshot.png) -->
-
-<!-- > 📸 スクリーンショットは `docs/screenshot.png` に画像を配置すると表示されます。 -->
+![Game Screenshot](./docs/screenshot.jpg)
 
 ## ✨ 主な特徴
 
