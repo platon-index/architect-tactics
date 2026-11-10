@@ -5,6 +5,10 @@
 
 ![Game Screenshot](./docs/screenshot.jpg)
 
+### 🎮 オンラインで今すぐプレイ
+**[https://architect-tactics.pages.dev](https://architect-tactics.pages.dev)**
+*(PC / スマホ / iPadブラウザでそのまま動作します)*
+
 ## ✨ 主な特徴
 
 - **OCI 主要15サービス × 前衛・後衛スロット配置** と、4つのアーキテクチャシナジー（絆）
