@@ -1615,23 +1615,23 @@ export default function App() {
         key={`${rowType}_${slotIndex}`}
         onClick={() => handleSlotTap(rowType, slotIndex)}
         disabled={phase !== 'PREP'}
-        className={`relative group flex flex-col justify-between p-1 rounded-lg border transition-all duration-150 min-h-[62px] text-left select-none overflow-hidden ${
+        className={`relative group flex flex-col justify-between p-2 rounded-xl border-2 transition-all duration-150 min-h-[92px] text-left select-none overflow-hidden ${
           isSelected
             ? 'ring-2 ring-amber-400 border-amber-400 bg-amber-500/20 scale-[1.02]'
             : unit
             ? `${getCardBorderByCost(master.cost)} bg-slate-800/90`
             : isRecommendedTarget
-            ? 'border-dashed border-cyan-400/80 bg-cyan-950/30 hover:bg-cyan-900/40'
-            : 'border-dashed border-slate-700/80 bg-slate-900/50 hover:border-slate-500'
+            ? 'border-dashed border-cyan-400 bg-cyan-950/40 hover:bg-cyan-900/50'
+            : 'border-dashed border-slate-500/80 bg-slate-800/40 hover:border-slate-300 hover:bg-slate-800/70'
         }`}
       >
         {/* 空きスロット表示 */}
         {!unit && (
-          <div className="flex flex-col items-center justify-center h-full w-full opacity-45 group-hover:opacity-75">
-            <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400">
+          <div className="flex flex-col items-center justify-center h-full w-full opacity-70 group-hover:opacity-100">
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-300">
               {rowType === 'FRONT' ? `Public #${slotIndex + 1}` : `Private #${slotIndex + 1}`}
             </span>
-            <span className="text-[10px] text-slate-500 mt-0.5">
+            <span className="text-[11px] text-slate-400 mt-0.5">
               {selectedUnitDetail ? 'タップして配置' : rowType === 'FRONT' ? '前衛(エッジ)' : '後衛(内部)'}
             </span>
           </div>
@@ -1643,7 +1643,7 @@ export default function App() {
             {/* 上段：★ランクと推奨配置チェック */}
             <div className="flex items-center justify-between w-full gap-1">
               <span
-                className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${
+                className={`text-xs font-bold px-1.5 py-0.5 rounded ${
                   unit.star === 3
                     ? 'bg-amber-500 text-slate-950'
                     : unit.star === 2
@@ -1665,13 +1665,13 @@ export default function App() {
             </div>
 
             {/* 中段：アイコンとサービス名 */}
-            <div className="flex items-center gap-1 my-0.5">
-              <div className={`p-1 rounded-md ${getCostBadgeStyle(master.cost)}`}>
-                {renderServiceIcon(master.iconType, 'w-4 h-4')}
+            <div className="flex items-center gap-1.5 my-1">
+              <div className={`p-1.5 rounded-md ${getCostBadgeStyle(master.cost)}`}>
+                {renderServiceIcon(master.iconType, 'w-5 h-5')}
               </div>
               <div className="min-w-0 flex-1">
-                <div className="text-xs font-bold text-slate-100 truncate leading-tight">{master.shortName}</div>
-                <div className="text-[10px] text-slate-400 truncate">
+                <div className="text-sm font-bold text-slate-100 truncate leading-tight">{master.shortName}</div>
+                <div className="text-[11px] text-slate-300 truncate">
                   {phase === 'BATTLE' && combatUnit
                     ? combatUnit.alive
                       ? `ATK ${combatUnit.atk}`
@@ -1687,7 +1687,7 @@ export default function App() {
             {phase === 'BATTLE' && combatUnit ? (
               <div className="w-full space-y-1 mt-0.5">
                 {/* HP + Shield Bar */}
-                <div className="w-full h-2 bg-slate-950 rounded-full overflow-hidden flex">
+                <div className="w-full h-2.5 bg-slate-950 rounded-full overflow-hidden flex">
                   <div
                     className={`h-full transition-all duration-150 ${
                       combatUnit.hp / combatUnit.maxHp > 0.5
@@ -1720,7 +1720,7 @@ export default function App() {
                   return (
                     <span
                       key={synId}
-                      className={`text-[9px] px-1.5 py-0.5 rounded border ${syn.bgColor} ${syn.color} ${syn.borderColor}`}
+                      className={`text-[10px] px-1.5 py-0.5 rounded border ${syn.bgColor} ${syn.color} ${syn.borderColor}`}
                     >
                       {syn.name.slice(0, 4)}
                     </span>
@@ -1770,80 +1770,27 @@ export default function App() {
       {/* ==========================================
           エリア1: トップステータスバー (SLA稼働率 / 予算・利子 / キャパシティ / 操作メニュー)
           ========================================== */}
-      <header className="shrink-0 bg-slate-900/95 border border-slate-800 rounded-lg px-2 py-1 z-30">
-        <div className="flex items-center justify-between gap-2">
+      <header className="shrink-0 bg-slate-900/95 border border-slate-800 rounded-lg px-3 py-1.5 z-30">
+        <div className="flex items-center justify-between gap-3">
           {/* 左：タイトル */}
           <div className="flex items-center gap-1.5">
             <div className="bg-gradient-to-br from-cyan-500 to-blue-600 p-1 rounded-md shadow-sm">
-              <Server className="w-4 h-4 text-slate-950" />
+              <Server className="w-5 h-5 text-slate-950" />
             </div>
             <div className="flex flex-col leading-none">
-              <h1 className="text-xs font-extrabold tracking-tight text-white whitespace-nowrap">
+              <h1 className="text-sm font-extrabold tracking-tight text-white whitespace-nowrap">
                 アーキテクトタクティクス
               </h1>
-              <span className="mt-0.5 text-[8px] font-semibold tracking-wider text-cyan-400 whitespace-nowrap">
+              <span className="mt-1 text-[9px] font-semibold tracking-wider text-cyan-400 whitespace-nowrap">
                 OCI Edition (MVP v1.0)
               </span>
             </div>
           </div>
 
-          {/* 中央：ステージ進行 数直線 */}
-          <div className="flex-1 min-w-0 px-2">
-            <div className="flex items-center justify-center">
-              {Array.from({ length: TOTAL_ROUNDS }, (_, i) => i + 1).map((n) => {
-                const done = round > n;
-                const current = round === n;
-                const isBoss = BOSS_ROUNDS.includes(n);
-                const stageStart = n > 1 && (n - 1) % STAGE_ROUNDS === 0;
-                const size = isBoss ? 'w-6 h-6' : 'w-4 h-4';
-                const color = done
-                  ? 'bg-emerald-500 border-emerald-300 text-slate-950'
-                  : current
-                  ? 'bg-cyan-400 border-cyan-200 text-slate-950 animate-pulse shadow-[0_0_10px_rgba(34,211,238,0.9)]'
-                  : 'bg-slate-800 border-slate-600 text-slate-500';
-                return (
-                  <React.Fragment key={n}>
-                    {stageStart && <div className="w-px h-5 bg-amber-400/70 mx-1 shrink-0" />}
-                    <div
-                      title={isBoss ? `ボス (ROUND ${n})` : `通常戦 (ROUND ${n})`}
-                      className={`${size} rounded-full border-2 flex items-center justify-center text-[8px] font-extrabold shrink-0 ${color}`}
-                    >
-                      {isBoss ? '👑' : n}
-                    </div>
-                    {n < TOTAL_ROUNDS && n % STAGE_ROUNDS !== 0 && (
-                      <div className={`h-0.5 w-1.5 sm:w-3 shrink ${round > n ? 'bg-emerald-500' : 'bg-slate-700'}`} />
-                    )}
-                  </React.Fragment>
-                );
-              })}
-            </div>
-            <div className="text-center text-[9px] font-mono text-cyan-300 leading-none mt-0.5">{roundLabel(round)}</div>
-            {activeAugments.length > 0 && (
-              <div className="flex items-center justify-center gap-1 mt-0.5">
-                {activeAugments.map((id) => {
-                  const aug = AUGMENT_POOL.find((a) => a.id === id);
-                  if (!aug) return null;
-                  const Icon = AUGMENT_ICONS[aug.iconName] || Sparkles;
-                  return (
-                    <button
-                      key={id}
-                      onClick={() => setAugmentInfoId(id)}
-                      className={`flex items-center gap-1 px-1.5 py-0 rounded-full border text-[9px] font-bold max-w-[96px] ${AUGMENT_TIER_STYLE[aug.tier]}`}
-                      title={aug.description}
-                    >
-                      <Icon className="w-3 h-3 shrink-0" />
-                      <span className="truncate">{aug.name}</span>
-                    </button>
-                  );
-                })}
-              </div>
-            )}
-          </div>
-
           {/* 中央：SLA稼働率・所持クレジット(利子)・配置枠・クイズ正答率 */}
-          <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+          <div className="flex-1 min-w-0 flex items-center justify-end gap-3 flex-wrap">
             {/* SLA稼働率 */}
-            <div className="bg-slate-800/90 border border-slate-700 rounded-lg px-2.5 py-1 flex items-center gap-2">
+            <div className="bg-slate-800/90 border border-slate-700 rounded-lg px-3 py-1.5 flex items-center gap-2">
               <Activity className={`w-4 h-4 ${slaHp > 50 ? 'text-emerald-400' : 'text-rose-400'}`} />
               <div>
                 <div className="text-[10px] text-slate-400 leading-none">SLA稼働率</div>
@@ -1852,7 +1799,7 @@ export default function App() {
             </div>
 
             {/* クラウド予算＆利子 */}
-            <div className="bg-slate-800/90 border border-amber-500/40 rounded-lg px-2.5 py-1 flex items-center gap-2">
+            <div className="bg-slate-800/90 border border-amber-500/40 rounded-lg px-3 py-1.5 flex items-center gap-2">
               <Coins className="w-4 h-4 text-amber-400" />
               <div>
                 <div className="text-[10px] text-slate-400 leading-none">予算 (利子+{currentInterest}G)</div>
@@ -1861,7 +1808,7 @@ export default function App() {
             </div>
 
             {/* 配置キャパシティ */}
-            <div className="bg-slate-800/90 border border-cyan-500/40 rounded-lg px-2.5 py-1 flex items-center gap-2">
+            <div className="bg-slate-800/90 border border-cyan-500/40 rounded-lg px-3 py-1.5 flex items-center gap-2">
               <Layers className="w-4 h-4 text-cyan-400" />
               <div>
                 <div className="text-[10px] text-slate-400 leading-none">
@@ -1874,7 +1821,7 @@ export default function App() {
             </div>
 
             {/* クイズ戦績 */}
-            <div className="hidden md:flex bg-slate-800/90 border border-slate-700 rounded-lg px-2.5 py-1 items-center gap-2">
+            <div className="hidden md:flex bg-slate-800/90 border border-slate-700 rounded-lg px-3 py-1.5 items-center gap-2">
               <BookOpen className="w-4 h-4 text-purple-400" />
               <div>
                 <div className="text-[10px] text-slate-400 leading-none">OCIクイズ正答</div>
@@ -1886,7 +1833,7 @@ export default function App() {
           </div>
 
           {/* 右：サービス図鑑・ヘルプ・リセットボタン */}
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1.5 shrink-0">
             <button
               onClick={() => setActiveModal('CATALOG')}
               className="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-medium text-slate-200 flex items-center gap-1 transition"
@@ -1914,11 +1861,67 @@ export default function App() {
       </header>
 
       {/* ==========================================
+          エリア1b: ステージ進捗サブバー (STAGE・ROUND / 18ノード進捗 / 獲得設計戦略)
+          ========================================== */}
+      <div className="shrink-0 bg-slate-900/60 border border-slate-800/80 rounded-lg px-3 py-1.5 flex items-center gap-4 z-20">
+        <div className="shrink-0 text-xs font-mono font-bold text-cyan-300 whitespace-nowrap">{roundLabel(round)}</div>
+
+        <div className="flex-1 min-w-0 flex items-center justify-center">
+          {Array.from({ length: TOTAL_ROUNDS }, (_, i) => i + 1).map((n) => {
+            const done = round > n;
+            const current = round === n;
+            const isBoss = BOSS_ROUNDS.includes(n);
+            const stageStart = n > 1 && (n - 1) % STAGE_ROUNDS === 0;
+            const size = isBoss ? 'w-7 h-7' : 'w-5 h-5';
+            const color = done
+              ? 'bg-emerald-500 border-emerald-300 text-slate-950'
+              : current
+              ? 'bg-cyan-400 border-cyan-200 text-slate-950 animate-pulse shadow-[0_0_10px_rgba(34,211,238,0.9)]'
+              : 'bg-slate-800 border-slate-600 text-slate-500';
+            return (
+              <React.Fragment key={n}>
+                {stageStart && <div className="w-px h-6 bg-amber-400/70 mx-2 shrink-0" />}
+                <div
+                  title={isBoss ? `ボス (ROUND ${n})` : `通常戦 (ROUND ${n})`}
+                  className={`${size} rounded-full border-2 flex items-center justify-center text-[10px] font-extrabold shrink-0 ${color}`}
+                >
+                  {isBoss ? '👑' : n}
+                </div>
+                {n < TOTAL_ROUNDS && n % STAGE_ROUNDS !== 0 && (
+                  <div className={`h-0.5 flex-1 min-w-[6px] max-w-[22px] ${round > n ? 'bg-emerald-500' : 'bg-slate-700'}`} />
+                )}
+              </React.Fragment>
+            );
+          })}
+        </div>
+
+        <div className="shrink-0 flex items-center justify-end gap-1.5 min-w-[96px]">
+          {activeAugments.length === 0 && <span className="text-[10px] text-slate-500">設計戦略: なし</span>}
+          {activeAugments.map((id) => {
+            const aug = AUGMENT_POOL.find((a) => a.id === id);
+            if (!aug) return null;
+            const Icon = AUGMENT_ICONS[aug.iconName] || Sparkles;
+            return (
+              <button
+                key={id}
+                onClick={() => setAugmentInfoId(id)}
+                className={`flex items-center gap-1 px-2 py-0.5 rounded-full border text-[10px] font-bold max-w-[120px] ${AUGMENT_TIER_STYLE[aug.tier]}`}
+                title={aug.description}
+              >
+                <Icon className="w-3 h-3 shrink-0" />
+                <span className="truncate">{aug.name}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* ==========================================
           メインコンテンツ (エリア2: 盤面エリア + エリア3: シナジー＆ログパネル)
           ========================================== */}
-      <main className="flex-1 min-h-0 w-full grid grid-cols-12 gap-2">
-        {/* 左〜中央 (9カラム): 敵脅威情報 + 前衛4枠 + 後衛6枠 */}
-        <div className="col-span-9 min-h-0 flex flex-col gap-1.5">
+      <main className="flex-1 min-h-0 w-full grid grid-cols-10 gap-2">
+        {/* 左〜中央 (7/10カラム = 70%): 敵脅威情報 + 前衛4枠 + 後衛6枠 */}
+        <div className="col-span-7 min-h-0 flex flex-col gap-1.5">
           {/* 1. 敵（インシデント・攻撃ボス）表示パネル */}
           <div className="shrink-0 bg-gradient-to-r from-slate-900 via-rose-950/30 to-slate-900 border border-rose-500/40 rounded-lg p-1.5 shadow-inner">
             <div className="flex flex-row items-center justify-between gap-2">
@@ -1989,7 +1992,7 @@ export default function App() {
                 </span>
                 <span className="text-[10px] text-slate-400 font-mono">{frontRow.filter(Boolean).length}/4</span>
               </div>
-              <div className="grid grid-cols-4 gap-1.5">
+              <div className="grid grid-cols-4 gap-2 mx-auto w-[calc((100%-2.5rem)/6*4+1.5rem)]">
                 {[0, 1, 2, 3].map((idx) => renderBoardSlot('FRONT', idx))}
               </div>
             </div>
@@ -2003,14 +2006,14 @@ export default function App() {
                 </span>
                 <span className="text-[10px] text-slate-400 font-mono">{backRow.filter(Boolean).length}/6</span>
               </div>
-              <div className="grid grid-cols-6 gap-1.5">
+              <div className="grid grid-cols-6 gap-2">
                 {[0, 1, 2, 3, 4, 5].map((idx) => renderBoardSlot('BACK', idx))}
               </div>
             </div>
           </div>
         </div>
 
-        {/* 右パネル (3カラム): 発動中シナジー（絆） + 選択中ユニット詳細 or バトルログ */}
+        {/* 右パネル (3/10カラム = 30%): 発動中シナジー（絆） + 選択中ユニット詳細 or バトルログ */}
         <div className="col-span-3 min-h-0 flex flex-col gap-1.5">
           {/* シナジー（絆）一覧カード */}
           <div className="bg-slate-900/90 border border-slate-800 rounded-lg p-1.5 min-h-0 flex-1 overflow-y-auto">
