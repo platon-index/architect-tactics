@@ -20,13 +20,11 @@ import {
   Trash2,
   FastForward,
   RotateCcw,
-  Code,
   Sparkles,
   Layers,
   Activity,
   Coins,
   BookOpen,
-  Smartphone,
   ChevronRight,
   ShieldAlert,
   TrendingUp,
@@ -729,8 +727,8 @@ export default function App() {
   const [battleLogs, setBattleLogs] = useState([]);
   const [roundResult, setRoundResult] = useState(null);
 
-  // 開発者・デプロイガイドモーダル
-  const [activeModal, setActiveModal] = useState(null); // 'GUIDE' | 'JSON' | 'CATALOG' | null
+  // OCI図鑑モーダル
+  const [activeModal, setActiveModal] = useState(null); // 'CATALOG' | null
 
   // トースト自動消去
   const showToast = (msg, type = 'info') => {
@@ -1887,7 +1885,7 @@ export default function App() {
             </div>
           </div>
 
-          {/* 右：サービス図鑑・JSONデータ・iPadデプロイ手順ボタン */}
+          {/* 右：サービス図鑑・ヘルプ・リセットボタン */}
           <div className="flex items-center gap-1.5">
             <button
               onClick={() => setActiveModal('CATALOG')}
@@ -1896,21 +1894,6 @@ export default function App() {
             >
               <BookOpen className="w-3.5 h-3.5 text-cyan-400" />
               <span className="hidden sm:inline">OCI図鑑</span>
-            </button>
-            <button
-              onClick={() => setActiveModal('JSON')}
-              className="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-medium text-slate-200 flex items-center gap-1 transition"
-              title="データ駆動JSON構造を確認"
-            >
-              <Code className="w-3.5 h-3.5 text-amber-400" />
-              <span className="hidden sm:inline">データ構造</span>
-            </button>
-            <button
-              onClick={() => setActiveModal('GUIDE')}
-              className="px-2.5 py-1.5 rounded-lg bg-cyan-950/80 hover:bg-cyan-900 border border-cyan-500/50 text-xs font-bold text-cyan-200 flex items-center gap-1 transition"
-            >
-              <Smartphone className="w-3.5 h-3.5 text-cyan-400" />
-              <span className="hidden sm:inline">デプロイ</span>
             </button>
             <button
               onClick={() => setShowHelp(true)}
@@ -2640,8 +2623,6 @@ export default function App() {
           <div className="bg-slate-900 border border-slate-700 rounded-2xl max-w-3xl w-full max-h-[85vh] flex flex-col shadow-2xl">
             <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-800">
               <h3 className="text-sm sm:text-base font-extrabold text-white flex items-center gap-2">
-                {activeModal === 'GUIDE' && '📱 iPad (第9世代) 実機確認・デプロイ手順ガイド'}
-                {activeModal === 'JSON' && '💻 拡張用データ駆動マスター構造 (JSONインスペクタ)'}
                 {activeModal === 'CATALOG' && '📘 収録OCIサービス一覧 (全15種・Cost 1〜3)'}
               </h3>
               <button
@@ -2653,62 +2634,6 @@ export default function App() {
             </div>
 
             <div className="p-5 overflow-y-auto text-xs space-y-4 leading-relaxed text-slate-300">
-              {activeModal === 'GUIDE' && (
-                <>
-                  <div className="bg-cyan-950/40 border border-cyan-500/40 rounded-xl p-3.5 text-cyan-200">
-                    <strong>まずはこの画面の右上の「Preview」上でそのまま全機能が遊べます！</strong>
-                    <br />
-                    さらにご自身のWindows PCからCloudflare Pages / GitHub Pages / OCI Object Storageへ配置して、iPad（第9世代）のSafariからホーム画面に追加する手順は以下の通りです。
-                  </div>
-
-                  <div className="space-y-2">
-                    <h4 className="font-bold text-white text-sm">1. Windows PCでVite + Reactプロジェクトを作成</h4>
-                    <pre className="bg-slate-950 p-3 rounded-xl border border-slate-800 font-mono text-[11px] text-emerald-300 overflow-x-auto">
-{`npm create vite@latest oci-cloud-wars -- --template react-ts
-cd oci-cloud-wars
-npm install lucide-react tailwindcss @tailwindcss/vite`}
-                    </pre>
-                    <p>
-                      生成されたプロジェクトの <code className="text-amber-300">src/App.tsx</code> にこのエディタのコードを貼り付け、<code className="text-amber-300">npm run build</code> を実行すると静的ファイル一式（<code className="text-amber-300">dist</code> フォルダ）が出力されます。
-                    </p>
-                  </div>
-
-                  <div className="space-y-2">
-                    <h4 className="font-bold text-white text-sm">
-                      2. OCI Object Storage または Cloudflare Pages でホスティング（無料）
-                    </h4>
-                    <ul className="list-disc pl-5 space-y-1.5">
-                      <li>
-                        <strong>Cloudflare Pages（最短3分・推奨）:</strong> GitHubリポジトリを連携するか、<code className="text-amber-300">npx wrangler pages deploy dist</code> を実行するだけで <code className="text-cyan-300">https://xxx.pages.dev</code> のURLが即時発行されます。
-                      </li>
-                      <li>
-                        <strong>OCI Object Storage で直接公開（OCIの実践学習にも最適！）:</strong> OCIコンソールでバケットを作成し、静的ファイル（index.html等）をアップロードして「事前認証済みリクエスト(PAR)」または前段に「API Gateway / Flexible LB」を構成すると、実際にOCIを触りながら自分のゲームを公開できます。
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div className="space-y-2">
-                    <h4 className="font-bold text-white text-sm">3. iPad（第9世代）で全画面アプリ化（PWA）</h4>
-                    <p>
-                      iPadのSafariで発行されたURLを開き、画面上部の共有アイコンから
-                      <strong className="text-amber-300">「ホーム画面に追加」</strong>
-                      をタップすると、アドレスバーが消えてネイティブゲームアプリと同じ感覚でプレイできます。
-                    </p>
-                  </div>
-                </>
-              )}
-
-              {activeModal === 'JSON' && (
-                <>
-                  <p>
-                    将来の「AWS編」「ネットワーク（CCNA）編」「Linux編」への拡張やマネタイズを見据え、ゲームロジックとユニット・クイズ定義は完全に分離されています。以下の配列にオブジェクトを追加するだけで新パックを増設できます。
-                  </p>
-                  <pre className="bg-slate-950 p-3.5 rounded-xl border border-slate-800 font-mono text-[11px] text-cyan-300 overflow-x-auto max-h-96">
-                    {JSON.stringify({ synergies: SYNERGY_MASTERS, sampleUnits: UNIT_MASTERS.slice(0, 4) }, null, 2)}
-                  </pre>
-                </>
-              )}
-
               {activeModal === 'CATALOG' && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {UNIT_MASTERS.map((u) => (
