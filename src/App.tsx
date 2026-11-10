@@ -1779,9 +1779,14 @@ export default function App() {
             <div className="bg-gradient-to-br from-cyan-500 to-blue-600 p-1 rounded-md shadow-sm">
               <Server className="w-4 h-4 text-slate-950" />
             </div>
-            <h1 className="text-xs font-extrabold tracking-tight text-white whitespace-nowrap">
-              OCI クラウド構築ウォーズ
-            </h1>
+            <div className="flex flex-col leading-none">
+              <h1 className="text-xs font-extrabold tracking-tight text-white whitespace-nowrap">
+                アーキテクトタクティクス
+              </h1>
+              <span className="mt-0.5 text-[8px] font-semibold tracking-wider text-cyan-400 whitespace-nowrap">
+                OCI Edition (MVP v1.0)
+              </span>
+            </div>
           </div>
 
           {/* 中央：ステージ進行 数直線 */}
